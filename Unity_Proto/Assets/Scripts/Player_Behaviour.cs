@@ -4,36 +4,87 @@ using UnityEngine;
 
 public class Player_Behaviour : MonoBehaviour
 {
+    private float m_horizontalMove;
+    private float m_verticalMove;
+    public CharacterController player;
+    private Vector3 PlayerInput;
+   
+    [SerializeField] private float m_playerspeed = 15;
+    private Vector3 movePlayer;
+    [SerializeField] private float gravity = 70f;
+    private float m_fallVelocity;
+    [SerializeField] private float m_jumpForce = 20f;
 
-    public float moveSpeed = 5;
-    public float rotateSpeed = 180;
-    public float jumpSpeed = 20;
-    public float gravity = 9.8f;
-    CharacterController controller;
-    Vector3 currentMovement;
+    public Camera mainCamera;
+    private Vector3 camForward;
+    private Vector3 camRight;
 
     void Start()
     {
 
-        controller = GetComponent<CharacterController>();
+        player = GetComponent<CharacterController>();
     }
 
     void Update()
     {
+        m_horizontalMove = Input.GetAxis("Horizontal");
+        m_verticalMove = Input.GetAxis("Vertical");
 
-        transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime, 0);
+        PlayerInput = new Vector3(m_horizontalMove, 0, m_verticalMove);
+        PlayerInput = Vector3.ClampMagnitude(PlayerInput, 5);
 
-        currentMovement = new Vector3(0, currentMovement.y, Input.GetAxis("Vertical") * moveSpeed);
-        currentMovement = transform.rotation * currentMovement;
+        camDirection();
 
-        if (!controller.isGrounded)
-            currentMovement -= new Vector3(0, gravity * Time.deltaTime, 0);
-        else
-            currentMovement.y = 0;
+        movePlayer = PlayerInput.x * camRight + PlayerInput.z * camForward;
 
-        if (controller.isGrounded && Input.GetButtonDown("Jump"))
-            currentMovement.y = jumpSpeed;
+        movePlayer = movePlayer * m_playerspeed;
 
-        controller.Move(currentMovement * Time.deltaTime);
+        player.transform.LookAt(player.transform.position + movePlayer);
+
+        SetGravity();
+
+        PlayerSkills();
+
+        //le asigno el movimiento al player
+        player.Move(movePlayer * Time.deltaTime);
     }
+
+    //Funcion de camara
+    void camDirection()
+    {
+        camForward = mainCamera.transform.forward;
+        camRight = mainCamera.transform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward = camForward.normalized;
+        camRight = camRight.normalized;
+    }
+   
+    //Funcion de gravedad
+    void SetGravity()
+    {
+        if (player.isGrounded)
+        {
+            m_fallVelocity = -gravity * Time.deltaTime;
+            movePlayer.y = m_fallVelocity;
+        }
+        else
+        {
+            m_fallVelocity -= gravity * Time.deltaTime;
+            movePlayer.y = m_fallVelocity; 
+        }
+    }
+   
+    //Habilidades del player
+    void PlayerSkills()
+    {
+        if (player.isGrounded && Input.GetButtonDown("Jump"))
+        {
+            m_fallVelocity = m_jumpForce;
+            movePlayer.y = m_fallVelocity;
+        }
+    }
+
 }
