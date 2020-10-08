@@ -4,8 +4,22 @@ public class MovingTarget : MonoBehaviour
 {
     public SpacePoint[] puntos;
     int currentPoint = 0;
-    public float speed = 5;
 
+    [SerializeField] float speed;
+
+    [SerializeField] float rangeDistanceMin;
+    [SerializeField] float rangeDistanceMax;
+    float rangeDistance = 6;
+    [SerializeField] Transform player;
+    [SerializeField] float velocidadEnemigo;
+ 
+    
+
+    private void Awake()
+    {
+        rangeDistance = rangeDistanceMin;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     void Update()
     {
@@ -17,10 +31,25 @@ public class MovingTarget : MonoBehaviour
             currentPoint %= puntos.Length;
         }
 
-        //Movemos
-        transform.position = Vector3.MoveTowards(transform.position,
-            puntos[currentPoint].transform.position,
-            Time.deltaTime * speed);
+        //Detecta Player
+        
+        if (Mathf.Abs(Vector3.Distance(player.position, transform.position)) < rangeDistance)
+        {
+            rangeDistance = rangeDistanceMax;
+            
+            transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * velocidadEnemigo);
+        }
+
+        //Patrulla siguiente punto
+        else
+        {
+            rangeDistance = rangeDistanceMin;
+            transform.position = Vector3.MoveTowards(transform.position, puntos[currentPoint].transform.position, Time.deltaTime * speed);
+            
+        }
+        
+
+
     }
 
 }
