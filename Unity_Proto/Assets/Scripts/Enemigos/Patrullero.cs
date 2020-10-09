@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MovingTarget : MonoBehaviour
+public class Patrullero : MonoBehaviour
 {
     public SpacePoint[] puntos;
     int currentPoint = 0;
@@ -11,7 +11,8 @@ public class MovingTarget : MonoBehaviour
     [SerializeField] float rangeDistanceMax;
     float rangeDistance = 6;
     [SerializeField] Transform player;
-    [SerializeField] float velocidadEnemigo;
+    [SerializeField] float speedChase;
+
  
     
 
@@ -20,6 +21,8 @@ public class MovingTarget : MonoBehaviour
         rangeDistance = rangeDistanceMin;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
+    
+   
 
     void Update()
     {
@@ -35,10 +38,15 @@ public class MovingTarget : MonoBehaviour
         
         if (Mathf.Abs(Vector3.Distance(player.position, transform.position)) < rangeDistance)
         {
+            
             rangeDistance = rangeDistanceMax;
             
-            transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * velocidadEnemigo);
+            transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speedChase);
         }
+        
+        
+        
+        
 
         //Patrulla siguiente punto
         else
