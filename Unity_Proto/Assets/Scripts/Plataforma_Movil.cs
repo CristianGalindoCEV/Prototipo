@@ -11,7 +11,7 @@ public class Plataforma_Movil : MonoBehaviour
     private int acutalPosition = 0;
     private int nextPosition = 1;
 
-    private bool moveToNext;
+    public bool moveToNext = true;
     public float waitTime;
 
     void Update()
