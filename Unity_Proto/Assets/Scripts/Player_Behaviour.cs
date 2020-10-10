@@ -14,6 +14,8 @@ public class Player_Behaviour : MonoBehaviour
     [SerializeField] private float gravity = 70f;
     private float m_fallVelocity;
     [SerializeField] private float m_jumpForce = 20f;
+    [SerializeField] private int HP = 100;
+    [SerializeField] private bool iamDead = false;
 
     public Camera mainCamera;
     private Vector3 camForward;
@@ -47,6 +49,7 @@ public class Player_Behaviour : MonoBehaviour
 
         //le asigno el movimiento al player
         player.Move(movePlayer * Time.deltaTime);
+
     }
 
     //Funcion de camara
@@ -86,5 +89,28 @@ public class Player_Behaviour : MonoBehaviour
             movePlayer.y = m_fallVelocity;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            StartCoroutine(Golpe());
+        }
+    }
 
+    IEnumerator Golpe()
+    {
+        //Indico que estoy muerto
+        iamDead = true;
+        //Indicamos al score que hemos perdido una vida
+        HP = HP - 10;
+       
+       /* if (HP == 0)
+        {
+            //Salta a la pantalla de muerte
+        }*/
+        yield return new WaitForSeconds(1.0f);
+        iamDead = false;
+
+
+    }
 }
