@@ -60,5 +60,13 @@ public class Patrullero : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Finish")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 }
 

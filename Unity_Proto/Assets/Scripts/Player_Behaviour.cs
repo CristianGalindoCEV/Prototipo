@@ -113,10 +113,10 @@ public class Player_Behaviour : MonoBehaviour
         //Indicamos al score que hemos perdido una vida
         HP = HP - 10;
        
-       /* if (HP == 0)
+        if (HP == 0)
         {
-            //Salta a la pantalla de muerte
-        }*/
+            SceneManager.LoadScene("GameOver");
+        }
         yield return new WaitForSeconds(1.0f);
         iamDead = false;
 
