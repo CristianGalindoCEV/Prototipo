@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Plataforma
   - Enemy
+  - platform
+  - portal
   layers:
   - Default
   - TransparentFX

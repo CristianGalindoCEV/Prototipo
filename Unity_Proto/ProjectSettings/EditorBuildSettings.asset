@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/EscenarioFinal.unity
+    guid: 80225a008ee2eb24fb6b87bfccb0ba33
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 12ad0a9e100492c48b88bd468bbde71b
+  - enabled: 1
+    path: Assets/Scenes/EscenaMiniBoss.unity
+    guid: db5223ee07e31414f92db4b50ccdb255
   m_configObjects: {}

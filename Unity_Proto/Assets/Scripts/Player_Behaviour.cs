@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Behaviour : MonoBehaviour
 {
@@ -94,6 +95,14 @@ public class Player_Behaviour : MonoBehaviour
         if (other.tag == "Enemy")
         {
             StartCoroutine(Golpe());
+        }
+        if (other.tag == "Finish")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        if (other.tag == "portal")
+        {
+            SceneManager.LoadScene("EscenaMiniBoss");
         }
     }
 
