@@ -9,6 +9,8 @@ public class Player_Behaviour : MonoBehaviour
     private float m_verticalMove;
     public CharacterController player;
     private Vector3 PlayerInput;
+    private Transform m_transform;
+    private Transform m_cameraTransform;
    
     [SerializeField] private float m_playerspeed = 15;
     private Vector3 movePlayer;
@@ -17,15 +19,21 @@ public class Player_Behaviour : MonoBehaviour
     [SerializeField] private float m_jumpForce = 20f;
     [SerializeField] private int HP = 100;
     [SerializeField] private bool iamDead = false;
-
-    public Camera mainCamera;
+    
+    [SerializeField]
+    private MyCamera mainCamera;
     private Vector3 camForward;
     private Vector3 camRight;
+    [SerializeField] GameObject m_shadowGO;
+    [SerializeField] Transform m_shadowTransform;
+    [SerializeField] LayerMask m_groundLayer;
 
     void Start()
     {
 
         player = GetComponent<CharacterController>();
+        m_cameraTransform = mainCamera.transform;
+        m_transform = player.transform;
     }
 
     void Update()
@@ -42,7 +50,7 @@ public class Player_Behaviour : MonoBehaviour
 
         movePlayer = movePlayer * m_playerspeed;
 
-        player.transform.LookAt(player.transform.position + movePlayer);
+        m_transform.LookAt(m_transform.position + movePlayer);
 
         SetGravity();
 
@@ -53,11 +61,19 @@ public class Player_Behaviour : MonoBehaviour
 
     }
 
+    private void LateUpdate()
+    {
+        if (!player.isGrounded)
+        {
+            RaycastGround();
+        }
+    }
+
     //Funcion de camara
     void camDirection()
     {
-        camForward = mainCamera.transform.forward;
-        camRight = mainCamera.transform.right;
+        camForward = m_cameraTransform.forward;
+        camRight = m_cameraTransform.right;
 
         camForward.y = 0;
         camRight.y = 0;
@@ -121,5 +137,16 @@ public class Player_Behaviour : MonoBehaviour
         iamDead = false;
 
 
+    }
+
+    void RaycastGround()
+    {
+        Ray ray = new Ray(m_transform.position, Vector3.down);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, m_groundLayer))
+        {
+            m_shadowTransform.position = hit.point;
+        }
     }
 }
