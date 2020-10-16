@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 139821781}
   - component: {fileID: 139821779}
   - component: {fileID: 139821780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plataforma
   m_TagString: platform
   m_Icon: {fileID: 0}
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 534665961}
   - component: {fileID: 534665959}
   - component: {fileID: 534665960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plataforma
   m_TagString: platform
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 1001096455}
   - component: {fileID: 1001096454}
   - component: {fileID: 1001096453}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plataforma
   m_TagString: platform
   m_Icon: {fileID: 0}
@@ -1634,11 +1634,6 @@ PrefabInstance:
       propertyPath: m_shadowTransform
       value: 
       objectReference: {fileID: 1534218281}
-    - target: {fileID: 8770872701983391922, guid: 134585fd7ed98c244ba8aa0368e703e5,
-        type: 3}
-      propertyPath: m_groundLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 8770872701983391924, guid: 134585fd7ed98c244ba8aa0368e703e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1698,16 +1693,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8770872701983391927, guid: 134585fd7ed98c244ba8aa0368e703e5,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8770872702132867547, guid: 134585fd7ed98c244ba8aa0368e703e5,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134585fd7ed98c244ba8aa0368e703e5, type: 3}
@@ -2245,7 +2230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534218281}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Sombra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
