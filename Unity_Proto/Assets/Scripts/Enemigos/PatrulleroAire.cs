@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Patrullero : MonoBehaviour
+public class PatrulleroAire : MonoBehaviour
 {
     public SpacePoint[] puntos;
     int currentPoint = 0;
@@ -19,7 +19,6 @@ public class Patrullero : MonoBehaviour
     private void Awake()
     {
         rangeDistance = rangeDistanceMin;
-       
     }
     
    
