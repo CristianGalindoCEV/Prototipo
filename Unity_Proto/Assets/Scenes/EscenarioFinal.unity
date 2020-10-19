@@ -1425,24 +1425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
---- !u!1 &1049365738 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8770872701983391927, guid: 134585fd7ed98c244ba8aa0368e703e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1293846588}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1049365744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049365738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fedb1d9599a0ab545967d89024c3ba51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1052215402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,11 +1727,6 @@ PrefabInstance:
       propertyPath: m_shadowTransform
       value: 
       objectReference: {fileID: 1534218281}
-    - target: {fileID: 8770872701983391922, guid: 134585fd7ed98c244ba8aa0368e703e5,
-        type: 3}
-      propertyPath: m_jumpForce
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8770872701983391924, guid: 134585fd7ed98c244ba8aa0368e703e5,
         type: 3}
       propertyPath: m_LocalPosition.x
