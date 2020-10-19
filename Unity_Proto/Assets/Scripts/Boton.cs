@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Boton : MonoBehaviour
 {
+    
+    void Start()
+    {
+        UnlockMouse();
+    }
+    
     public void PulsaRetry()
     {
         SceneManager.LoadScene("EscenarioFinal");
@@ -14,5 +20,11 @@ public class Boton : MonoBehaviour
     public void PulsaExit()
     {
         Application.Quit();
+    }
+
+    void UnlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
