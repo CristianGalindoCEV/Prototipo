@@ -66,6 +66,11 @@ public class Player_Behaviour : MonoBehaviour
         if (!player.isGrounded)
         {
             RaycastGround();
+
+        }
+        else
+        {
+            m_shadowGO.SetActive(false);
         }
     }
 
@@ -104,6 +109,7 @@ public class Player_Behaviour : MonoBehaviour
         {
             m_fallVelocity = m_jumpForce;
             movePlayer.y = m_fallVelocity;
+            m_shadowGO.SetActive(true);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -147,6 +153,7 @@ public class Player_Behaviour : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f, m_groundLayer))
         {
             m_shadowTransform.position = hit.point;
+
         }
     }
 }
