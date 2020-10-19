@@ -134,15 +134,13 @@ public class Player_Behaviour : MonoBehaviour
         iamDead = true;
         //Indicamos al score que hemos perdido una vida
         HP = HP - 10;
-       
+        //(Que el player sea empujado hacia atras?)
         if (HP == 0)
         {
             SceneManager.LoadScene("GameOver");
         }
         yield return new WaitForSeconds(1.0f);
         iamDead = false;
-
-
     }
 
     void RaycastGround()
