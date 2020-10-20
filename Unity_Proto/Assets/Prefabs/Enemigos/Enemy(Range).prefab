@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2696639196455959712}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.7, y: 0.7617303, z: -5.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -47,14 +47,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea3c288b39982a41b63d3b02d94ebd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntos: []
+  puntos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   speed: 3
   rangeDistanceMin: 8
   rangeDistanceMax: 12
+  rangeChase: 10
   player: {fileID: 0}
-  proyectilPrefab: {fileID: 3356240651043128606, guid: d8ba6d3ac0485a14fbec65f0c05da18c,
+  ProjectilePrefab: {fileID: 3356240651043128606, guid: d8ba6d3ac0485a14fbec65f0c05da18c,
     type: 3}
   enemyRange: {fileID: 2696639196455959714}
+  shootCooldown: 3
 --- !u!54 &2696639196455959724
 Rigidbody:
   m_ObjectHideFlags: 0
