@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Patrullero : MonoBehaviour
+public class EnemyMeele : MonoBehaviour
 {
     public SpacePoint[] puntos;
     int currentPoint = 0;
@@ -13,6 +13,7 @@ public class Patrullero : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] float speedChase;
 
+    
  
     
 
@@ -37,7 +38,6 @@ public class Patrullero : MonoBehaviour
         
         if (Mathf.Abs(Vector3.Distance(player.position, transform.position)) < rangeDistance)
         {
-            
             rangeDistance = rangeDistanceMax;
             
             transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speedChase);

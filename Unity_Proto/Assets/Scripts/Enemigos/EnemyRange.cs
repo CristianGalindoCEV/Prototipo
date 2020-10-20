@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PatrulleroAire : MonoBehaviour
+public class EnemyRange : MonoBehaviour
 {
     public SpacePoint[] puntos;
     int currentPoint = 0;
@@ -9,9 +9,16 @@ public class PatrulleroAire : MonoBehaviour
 
     [SerializeField] float rangeDistanceMin;
     [SerializeField] float rangeDistanceMax;
-    float rangeDistance = 6;
+
+    [SerializeField] float rangeChase;
+
+    float rangeDistance;
     [SerializeField] Transform player;
-    [SerializeField] float speedChase;
+    [SerializeField] GameObject ProjectilePrefab;
+    [SerializeField] Transform enemyRange;
+
+    [SerializeField] float shootCooldown;
+    private float shootCooldownTime = 0;
 
  
     
@@ -19,6 +26,7 @@ public class PatrulleroAire : MonoBehaviour
     private void Awake()
     {
         rangeDistance = rangeDistanceMin;
+       
     }
     
    
@@ -37,15 +45,31 @@ public class PatrulleroAire : MonoBehaviour
         if (Mathf.Abs(Vector3.Distance(player.position, transform.position)) < rangeDistance)
         {
             
+            transform.LookAt(player);
+
+            shootCooldownTime += Time.deltaTime;
+
             rangeDistance = rangeDistanceMax;
+
+            //decide si dispara o se mueve hacia al jugador
+            if(Mathf.Abs(Vector3.Distance(player.position, transform.position)) < rangeChase){
+
+                //si el tiempo es mayor del establecido dispara prefab
+                if (shootCooldownTime >= shootCooldown)
+                {
+                    Instantiate(ProjectilePrefab, enemyRange.transform.position, enemyRange.transform.rotation);
+                    shootCooldownTime =0;
+                }
+            }
+
+            else 
+            {
+                 transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speed);
+            }
             
-            transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speedChase);
+
         }
         
-        
-        
-        
-
         //Patrulla siguiente punto
         else
         {
