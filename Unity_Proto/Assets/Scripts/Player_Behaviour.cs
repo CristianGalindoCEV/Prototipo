@@ -15,7 +15,7 @@ public class Player_Behaviour : MonoBehaviour
     [SerializeField] private float m_playerspeed = 15;
     private Vector3 movePlayer;
     [SerializeField] private float gravity = 70f;
-    private float m_fallVelocity;
+    public float m_fallVelocity;
     [SerializeField] private float m_jumpForce = 20f;
     [SerializeField] private int HP = 100;
     [SerializeField] private bool iamDead = false;
@@ -27,6 +27,10 @@ public class Player_Behaviour : MonoBehaviour
     [SerializeField] GameObject m_shadowGO;
     [SerializeField] Transform m_shadowTransform;
     [SerializeField] LayerMask m_groundLayer;
+
+    [SerializeField] private float m_jumpTime = 0.5f;
+    [SerializeField] private float m_gravityForce = 3f;
+    private float m_internGravity;
 
     void Start()
     {
@@ -90,28 +94,49 @@ public class Player_Behaviour : MonoBehaviour
     //Funcion de gravedad
     void SetGravity()
     {
+
         if (player.isGrounded)
         {
-            m_fallVelocity = -gravity * Time.deltaTime;
-            movePlayer.y = m_fallVelocity;
+            m_fallVelocity = 0;
+
+            m_internGravity = gravity * m_jumpTime;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
         }
-        else
+
+        if (Input.GetButton("Jump") && m_fallVelocity != 0)
         {
-            m_fallVelocity -= gravity * Time.deltaTime;
-            movePlayer.y = m_fallVelocity; 
+            ReleaseJump();
         }
+
+        m_fallVelocity -= gravity * Time.deltaTime * m_gravityForce;
+        movePlayer.y = m_fallVelocity;
     }
    
     //Habilidades del player
     void PlayerSkills()
     {
-        if (player.isGrounded && Input.GetButtonDown("Jump"))
-        {
-            m_fallVelocity = m_jumpForce;
-            movePlayer.y = m_fallVelocity;
-            m_shadowGO.SetActive(true);
-        }
+
+
     }
+
+    public void Jump()
+    {
+
+        m_fallVelocity = m_jumpForce;
+
+        m_shadowGO.SetActive(true);
+    }
+
+    public void ReleaseJump()
+    {
+        m_internGravity -= Time.deltaTime;
+        m_fallVelocity += m_internGravity *  Time.deltaTime;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
@@ -151,6 +176,7 @@ public class Player_Behaviour : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f, m_groundLayer))
         {
             m_shadowTransform.position = hit.point;
+            m_shadowTransform.localRotation = Quaternion.FromToRotation(m_shadowTransform.up, hit.normal) * m_shadowTransform.localRotation;
 
         }
     }
