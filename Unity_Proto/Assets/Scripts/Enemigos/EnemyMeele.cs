@@ -12,10 +12,12 @@ public class EnemyMeele : MonoBehaviour
     float rangeDistance = 6;
     [SerializeField] Transform player;
     [SerializeField] float speedChase;
+    public int Damage = 10;
 
-    
- 
-    
+
+
+
+
 
     private void Awake()
     {

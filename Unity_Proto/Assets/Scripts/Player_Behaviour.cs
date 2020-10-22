@@ -18,6 +18,7 @@ public class Player_Behaviour : MonoBehaviour
     public float m_fallVelocity;
     [SerializeField] private float m_jumpForce = 20f;
     [SerializeField] private int HP = 100;
+    [SerializeField] private int m_Damage;
     [SerializeField] private bool iamDead = false;
     
     [SerializeField]
@@ -139,7 +140,7 @@ public class Player_Behaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "EnemyMele")
         {
             StartCoroutine(Golpe());
         }
@@ -157,8 +158,9 @@ public class Player_Behaviour : MonoBehaviour
     {
         //Indico que estoy muerto
         iamDead = true;
-        //Indicamos al score que hemos perdido una vida
-        HP = HP - 10;
+        //Indicamos al score que hemos perdido HP
+        HP = HP - GetComponent<EnemyMeele>().Damage;
+       
         //(Que el player sea empujado hacia atras)
         if (HP == 0)
         {

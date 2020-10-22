@@ -21,7 +21,10 @@ public class Boton : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void PulsaPlay()
+    {
+        SceneManager.LoadScene("EscenarioFinal");
+    }
     void UnlockMouse()
     {
         Cursor.lockState = CursorLockMode.None;
