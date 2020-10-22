@@ -10,15 +10,20 @@ public class MiniBossScript : MonoBehaviour
     [SerializeField] Transform player;
 
     private int randomNumber;
-    public int bossHP =100;
+    public int bossHP = 100;
+    bool isDead = false;
+    
 
 
     void Update()
     {
-        TimeCounter += Time.deltaTime;
+        
+        if(!isDead)
+        {
+            TimeCounter += Time.deltaTime;
 
         
-        
+        //Ataques
         if (TimeCounter > 3)
         {
             TimeCounter =0;
@@ -28,11 +33,26 @@ public class MiniBossScript : MonoBehaviour
             else {SpikeCage(); Debug.Log("SpikeCage"); }
             
         }
-        
-        
+        //Muere
+        if (bossHP <= 0)
+        {
+            StartCoroutine(Death());
+        }
+
+        }
+
     }
 
+    IEnumerator Death()
+    {
+        Debug.Log("BossMuerto");
+        isDead = true;
+        //Animacion
+        //Particulas
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
 
+    }
     void SpikeAttack ()
     {
         Instantiate(spikePrefab, player.transform.position, transform.rotation);
@@ -43,6 +63,6 @@ public class MiniBossScript : MonoBehaviour
         Instantiate(spikeCagePrefab, player.transform.position, transform.rotation);
     }
     
-
+    
 
 }
