@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PinchoScript : MonoBehaviour
+public class SpikeScript : MonoBehaviour
 {
     private float TimeCounter = 0;
     // Update is called once per frame
