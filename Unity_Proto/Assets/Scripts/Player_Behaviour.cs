@@ -5,33 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class Player_Behaviour : MonoBehaviour
 {
+    //Player
     private float m_horizontalMove;
     private float m_verticalMove;
     public CharacterController player;
     private Vector3 PlayerInput;
     private Transform m_transform;
-    private Transform m_cameraTransform;
-   
+    public float HP = 100;
+    public float Damage;
     [SerializeField] private float m_playerspeed = 15;
     private Vector3 movePlayer;
-    [SerializeField] private float gravity = 70f;
-    public float m_fallVelocity;
-    [SerializeField] private float m_jumpForce = 20f;
-    [SerializeField] private int HP = 100;
-    [SerializeField] private int m_Damage;
     [SerializeField] private bool iamDead = false;
-    
+
+    //Camara
+    private Transform m_cameraTransform;
     [SerializeField]
     private MyCamera mainCamera;
     private Vector3 camForward;
     private Vector3 camRight;
+    
+    //Sombra
     [SerializeField] GameObject m_shadowGO;
     [SerializeField] Transform m_shadowTransform;
     [SerializeField] LayerMask m_groundLayer;
 
+    //Gravedad y salto
     [SerializeField] private float m_jumpTime = 0.5f;
     [SerializeField] private float m_gravityForce = 3f;
+    [SerializeField] private float gravity = 70f;
+    public float m_fallVelocity;
+    [SerializeField] private float m_jumpForce = 20f;
     private float m_internGravity;
+
+    //Canvas
+    public GameObject healthbar;
 
     void Start()
     {
@@ -142,6 +149,7 @@ public class Player_Behaviour : MonoBehaviour
     {
         if (other.tag == "EnemyMele")
         {
+            Damage = 15f;
             StartCoroutine(Golpe());
         }
         if (other.tag == "Finish")
@@ -159,8 +167,8 @@ public class Player_Behaviour : MonoBehaviour
         //Indico que estoy muerto
         iamDead = true;
         //Indicamos al score que hemos perdido HP
-        HP = HP - GetComponent<EnemyMeele>().Damage;
-       
+        HP = HP - Damage;
+        healthbar.SendMessage("TakeDamage", Damage);
         //(Que el player sea empujado hacia atras)
         if (HP == 0)
         {

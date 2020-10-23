@@ -9,6 +9,7 @@ TagManager:
   - platform
   - portal
   - Projectile
+  - EnemyMele
   layers:
   - Default
   - TransparentFX
