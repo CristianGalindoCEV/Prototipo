@@ -145,6 +145,7 @@ public class Player_Behaviour : MonoBehaviour
         m_fallVelocity += m_internGravity *  Time.deltaTime;
     }
 
+    //Triggers del player
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "EnemyMele")
@@ -161,7 +162,8 @@ public class Player_Behaviour : MonoBehaviour
             SceneManager.LoadScene("EscenaMiniBoss");
         }
     }
-
+  
+    //Corutina de golpe
     IEnumerator Golpe()
     {
         //Indico que estoy muerto
@@ -178,6 +180,7 @@ public class Player_Behaviour : MonoBehaviour
         iamDead = false;
     }
 
+    //Sistema de raycast para la sombra
     void RaycastGround()
     {
         Ray ray = new Ray(m_transform.position, Vector3.down);
