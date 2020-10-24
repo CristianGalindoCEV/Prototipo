@@ -22,4 +22,10 @@ public class BarraHP : MonoBehaviour
         healt.transform.localScale = new Vector2(hp/maxHp, 1);
 
     }
+    public void TakeLife(float amount)
+    {
+        hp = Mathf.Clamp(hp + amount, 0f, maxHp);
+        healt.transform.localScale = new Vector2(hp / maxHp, 1);
+
+    }
 }
