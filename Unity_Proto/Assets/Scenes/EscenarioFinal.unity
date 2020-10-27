@@ -2067,6 +2067,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8770872701983391927, guid: 134585fd7ed98c244ba8aa0368e703e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 134585fd7ed98c244ba8aa0368e703e5, type: 3}
 --- !u!1 &1319425172
@@ -2169,21 +2174,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7977793195410221696, guid: 520d3be6022a16645a02577fa98afcc4,
-        type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977793195410221696, guid: 520d3be6022a16645a02577fa98afcc4,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977793195410221708, guid: 520d3be6022a16645a02577fa98afcc4,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1544432456}
     - target: {fileID: 7977793195410221708, guid: 520d3be6022a16645a02577fa98afcc4,
         type: 3}
       propertyPath: puntos.Array.data[0]
@@ -2206,23 +2196,13 @@ PrefabInstance:
       objectReference: {fileID: 1052215403}
     - target: {fileID: 7977793195410221708, guid: 520d3be6022a16645a02577fa98afcc4,
         type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977793195410221708, guid: 520d3be6022a16645a02577fa98afcc4,
-        type: 3}
-      propertyPath: speedChase
-      value: 5.5
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1544432456}
     - target: {fileID: 7977793195410221709, guid: 520d3be6022a16645a02577fa98afcc4,
         type: 3}
       propertyPath: m_Name
       value: Enemy(Meele)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7977793195410221709, guid: 520d3be6022a16645a02577fa98afcc4,
-        type: 3}
-      propertyPath: m_TagString
-      value: EnemyMele
       objectReference: {fileID: 0}
     - target: {fileID: 7977793195410221711, guid: 520d3be6022a16645a02577fa98afcc4,
         type: 3}

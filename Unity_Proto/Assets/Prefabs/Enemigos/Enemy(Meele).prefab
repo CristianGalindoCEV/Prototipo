@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7977793195410221696}
   m_Layer: 0
   m_Name: Enemy(Meele)
-  m_TagString: Enemy
+  m_TagString: EnemyMele
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,11 +52,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 4
+  speed: 5
   rangeDistanceMin: 6
   rangeDistanceMax: 8
   player: {fileID: 0}
-  speedChase: 4.5
+  speedChase: 5.5
+  Damage: 10
 --- !u!54 &7977793195410221697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7977793195642740402

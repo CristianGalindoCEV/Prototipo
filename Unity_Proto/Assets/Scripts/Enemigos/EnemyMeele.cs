@@ -1,22 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMeele : MonoBehaviour
 {
-    public SpacePoint[] puntos;
-    int currentPoint = 0;
 
-    [SerializeField] float speed;
+    //Player
+    [SerializeField] private float speedChase = 5.5f;
+    public int Damage = 10;
+    private float speed = 6f;
 
+    //Rango
     [SerializeField] float rangeDistanceMin;
     [SerializeField] float rangeDistanceMax;
     float rangeDistance = 6;
     [SerializeField] Transform player;
-    [SerializeField] float speedChase;
-    public int Damage = 10;
-
-
-
-
+    public SpacePoint[] puntos;
+    int currentPoint = 0;
 
 
     private void Awake()
@@ -24,9 +25,6 @@ public class EnemyMeele : MonoBehaviour
         rangeDistance = rangeDistanceMin;
        
     }
-    
-   
-
     void Update()
     {
         
@@ -37,17 +35,11 @@ public class EnemyMeele : MonoBehaviour
         }
 
         //Detecta Player
-        
         if (Mathf.Abs(Vector3.Distance(player.position, transform.position)) < rangeDistance)
         {
-            rangeDistance = rangeDistanceMax;
-            
+            rangeDistance = rangeDistanceMax;    
             transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speedChase);
         }
-        
-        
-        
-        
 
         //Patrulla siguiente punto
         else
@@ -56,12 +48,27 @@ public class EnemyMeele : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, puntos[currentPoint].transform.position, Time.deltaTime * speed);
             
         }
-        
-
-
     }
 
-  
+    //Trigers
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            StartCoroutine(Ataco());
+        }
+    }
+
+    //Ataque
+        IEnumerator Ataco()
+    {
+        Debug.Log("Tepego");
+        speedChase = 0f;
+        //Animacion
+        yield return new WaitForSeconds(2.0f);
+        speedChase = 5.5f;
+    }
+
 
 }
 
