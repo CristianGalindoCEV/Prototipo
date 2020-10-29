@@ -10,6 +10,7 @@ TagManager:
   - portal
   - Projectile
   - EnemyMele
+  - ItemVida
   layers:
   - Default
   - TransparentFX
