@@ -6,6 +6,7 @@ using UnityEngine.Assertions.Must;
 public class BauculoItem : MonoBehaviour
 {
     [SerializeField] private int m_speed = 30;
+    public GameMaster gameMaster;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class BauculoItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.position, Vector3.back, m_speed * Time.deltaTime);
+        transform.RotateAround(transform.position, Vector3.up, m_speed * Time.deltaTime);
     }
 
     //triggers
@@ -24,14 +25,15 @@ public class BauculoItem : MonoBehaviour
         if (other.tag == "Player")
         {
             //Decirle al imput manager que desbloqueado es true
-            StartCoroutine(Desbloqueado());
+            StartCoroutine(unlocked());
         }
     }
-    IEnumerator Desbloqueado()
+    IEnumerator unlocked()
     {
-       //Particula
-       //Sonido
-        yield return new WaitForSeconds(1.0f);
+        //Particula
+        //Sonido
+        gameMaster.UnlockWeapon();
+        yield return new WaitForSeconds(0.5f);
         Destroy (gameObject);
     }
 }

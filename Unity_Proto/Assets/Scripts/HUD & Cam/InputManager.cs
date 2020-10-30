@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private GameObject Espada;
     public bool BauculoItem = false;
     public bool EspadaItem = true;
-    public bool Desbloqueado = false;
+    public GameMaster gamemaster;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
                 //Bauculo.Fire();
             }
         }
-        if (EspadaItem == true)
+        else if (EspadaItem == true)
         {
             Espada.SetActive(true);
             Bauculo.SetActive(false);
@@ -41,11 +41,15 @@ public class InputManager : MonoBehaviour
         if (Input.GetKey("1"))
         {
             EspadaItem = true;
+            BauculoItem = false;
         }
-        if (Input.GetKey("2"))
-        {
+        
+         if (Input.GetKey("2") && gamemaster.unlocked == true)
+         {
             BauculoItem = true;
-        }
+            EspadaItem = false;
+         }
+        
     }
 
 

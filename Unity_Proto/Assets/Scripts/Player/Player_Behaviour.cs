@@ -9,15 +9,15 @@ public class Player_Behaviour : MonoBehaviour
     private float m_horizontalMove;
     private float m_verticalMove;
     public CharacterController player;
-    private Vector3 PlayerInput;
+    private Vector3 playerInput;
     private Transform m_transform;
-    public float MaxHP = 100f;
-    public float HP;
-    public float Damage;
-    public float Curacion;
+    public float maxhp = 100f;
+    public float hp;
+    public float damage;
+    public float heal;
     [SerializeField] private float m_playerspeed = 15;
     private Vector3 movePlayer;
-    [SerializeField] private bool iamDead = false;
+    [SerializeField] private bool iamdead = false;
 
     //Camara
     private Transform m_cameraTransform;
@@ -48,7 +48,7 @@ public class Player_Behaviour : MonoBehaviour
         player = GetComponent<CharacterController>();
         m_cameraTransform = mainCamera.transform;
         m_transform = player.transform;
-        HP = MaxHP;
+        hp = maxhp;
     }
 
     void Update()
@@ -56,12 +56,12 @@ public class Player_Behaviour : MonoBehaviour
         m_horizontalMove = Input.GetAxis("Horizontal");
         m_verticalMove = Input.GetAxis("Vertical");
 
-        PlayerInput = new Vector3(m_horizontalMove, 0, m_verticalMove);
-        PlayerInput = Vector3.ClampMagnitude(PlayerInput, 5);
+        playerInput = new Vector3(m_horizontalMove, 0, m_verticalMove);
+        playerInput = Vector3.ClampMagnitude(playerInput, 5);
 
         camDirection();
 
-        movePlayer = PlayerInput.x * camRight + PlayerInput.z * camForward;
+        movePlayer = playerInput.x * camRight + playerInput.z * camForward;
 
         movePlayer = movePlayer * m_playerspeed;
 
@@ -153,7 +153,7 @@ public class Player_Behaviour : MonoBehaviour
     {
         if (other.tag == "EnemyMele")
         {
-            Damage = 15f;
+            damage = 15f;
             StartCoroutine(Golpe());
         }
         if (other.tag == "Finish")
@@ -166,8 +166,8 @@ public class Player_Behaviour : MonoBehaviour
         }
         if (other.tag == "ItemVida")
         {
-            Curacion = 10f;
-            StartCoroutine(MeCuro());
+            heal = 10f;
+            StartCoroutine(Healty());
         }
     }
   
@@ -175,30 +175,31 @@ public class Player_Behaviour : MonoBehaviour
     IEnumerator Golpe()
     {
         //Indico que estoy muerto
-        iamDead = true;
+        iamdead = true;
         //Indicamos al score que hemos perdido HP
-        HP = HP - Damage;
-        healthbar.SendMessage("TakeDamage", Damage);
+        hp = hp - damage;
+        healthbar.SendMessage("TakeDamage", damage);
         //(Que el player sea empujado hacia atras)
-        if (HP == 0)
+        
+        if (hp == 0)
         {
             SceneManager.LoadScene("GameOver");
         }
         yield return new WaitForSeconds(1.0f);
-        iamDead = false;
+        iamdead = false;
     }
     //Corutina curacion
-    IEnumerator MeCuro()
+    IEnumerator Healty()
     {
-        if (HP >= MaxHP)
+        if (hp >= maxhp)
         {
-            HP = MaxHP;
+            hp = maxhp;
         }
         else
         {
-            HP = HP + Curacion;
+            hp = hp + heal;
         }
-        healthbar.SendMessage("TakeLife", Curacion);
+        healthbar.SendMessage("TakeLife", heal);
         yield return new WaitForSeconds(1.0f);
         //Sonido
         //Particulas
