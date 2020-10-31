@@ -7,25 +7,22 @@ using UnityEngine.UI;
 public class BarraHP : MonoBehaviour
 {
     public Image healt;
-
-    float hp, maxHp = 100f;
+    public GameMaster gamemaster;
     // Start is called before the first frame update
     void Start()
     {
-        hp = maxHp;
+        gamemaster.hp = gamemaster.maxhp;
     }
-
-    // Update is called once per frame
     public void TakeDamage(float amount)
     {
-        hp = Mathf.Clamp(hp - amount, 0f, maxHp);
-        healt.transform.localScale = new Vector2(hp/maxHp, 1);
+        gamemaster.hp = Mathf.Clamp(gamemaster.hp - amount, 0f, gamemaster.maxhp);
+        healt.transform.localScale = new Vector2(gamemaster.hp / gamemaster.maxhp, 1);
 
     }
     public void TakeLife(float amount)
     {
-        hp = Mathf.Clamp(hp + amount, 0f, maxHp);
-        healt.transform.localScale = new Vector2(hp / maxHp, 1);
+        gamemaster.hp = Mathf.Clamp(gamemaster.hp + amount, 0f, gamemaster.maxhp);
+        healt.transform.localScale = new Vector2(gamemaster.hp / gamemaster.maxhp, 1);
 
     }
 }

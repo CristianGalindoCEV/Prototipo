@@ -11,8 +11,6 @@ public class Player_Behaviour : MonoBehaviour
     public CharacterController player;
     private Vector3 playerInput;
     private Transform m_transform;
-    public float maxhp = 100f;
-    public float hp;
     public float damage;
     public float heal;
     [SerializeField] private float m_playerspeed = 15;
@@ -41,6 +39,7 @@ public class Player_Behaviour : MonoBehaviour
 
     //Canvas
     public GameObject healthbar;
+    public GameMaster gamemaster;
 
     void Start()
     {
@@ -48,7 +47,6 @@ public class Player_Behaviour : MonoBehaviour
         player = GetComponent<CharacterController>();
         m_cameraTransform = mainCamera.transform;
         m_transform = player.transform;
-        hp = maxhp;
     }
 
     void Update()
@@ -177,11 +175,12 @@ public class Player_Behaviour : MonoBehaviour
         //Indico que estoy muerto
         iamdead = true;
         //Indicamos al score que hemos perdido HP
-        hp = hp - damage;
+        gamemaster.hp = gamemaster.hp - damage;
+
         healthbar.SendMessage("TakeDamage", damage);
         //(Que el player sea empujado hacia atras)
         
-        if (hp == 0)
+        if (gamemaster.hp == 0)
         {
             SceneManager.LoadScene("GameOver");
         }
@@ -191,13 +190,13 @@ public class Player_Behaviour : MonoBehaviour
     //Corutina curacion
     IEnumerator Healty()
     {
-        if (hp >= maxhp)
+        if (gamemaster.hp >= gamemaster.maxhp)
         {
-            hp = maxhp;
+            gamemaster.hp = gamemaster.maxhp;
         }
         else
         {
-            hp = hp + heal;
+            gamemaster.hp = gamemaster.hp + heal;
         }
         healthbar.SendMessage("TakeLife", heal);
         yield return new WaitForSeconds(1.0f);

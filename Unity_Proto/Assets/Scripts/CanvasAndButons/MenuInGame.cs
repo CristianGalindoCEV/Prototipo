@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMaster : MonoBehaviour
+public class MenuInGame : MonoBehaviour
 {
-    public bool unlocked;
-    public InputManager inputManager;
-    public float maxhp = 100;
-    public float hp = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +15,4 @@ public class GameMaster : MonoBehaviour
     {
         
     }
-
-    public void UnlockWeapon()
-    {
-        unlocked = true;
-    }   
 }

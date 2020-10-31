@@ -62,7 +62,6 @@ public class EnemyMeele : MonoBehaviour
     //Ataque
         IEnumerator Ataco()
     {
-        Debug.Log("Tepego");
         speedChase = 0f;
         //Animacion
         yield return new WaitForSeconds(2.0f);
