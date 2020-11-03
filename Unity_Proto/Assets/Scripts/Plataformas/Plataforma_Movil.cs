@@ -5,6 +5,7 @@ using UnityEngine;
 public class Plataforma_Movil : MonoBehaviour
 {
     public Rigidbody platformPoint;
+    public Transform platform;
     public Transform[] platformPositions;
     public float platformSpeed;
 
@@ -24,10 +25,10 @@ public class Plataforma_Movil : MonoBehaviour
         if (moveToNext)
         {
             StopCoroutine(WaitForMove(0));
-            platformPoint.MovePosition(Vector3.MoveTowards(platformPoint.position, platformPositions[nextPosition].position, platformSpeed * Time.deltaTime));
+            platform.position = Vector3.MoveTowards(platform.position, platformPositions[nextPosition].position, platformSpeed * Time.deltaTime);
         }
       
-        if (Vector3.Distance(platformPoint.position, platformPositions[nextPosition].position) <= 0)
+        if (Vector3.Distance(platform.position, platformPositions[nextPosition].position) <= 0)
         {
             StartCoroutine(WaitForMove(waitTime));
             acutalPosition = nextPosition;

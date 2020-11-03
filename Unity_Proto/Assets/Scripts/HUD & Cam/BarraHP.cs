@@ -15,14 +15,14 @@ public class BarraHP : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
-        gamemaster.hp = Mathf.Clamp(gamemaster.hp - amount, 0f, gamemaster.maxhp);
-        healt.transform.localScale = new Vector2(gamemaster.hp / gamemaster.maxhp, 1);
+        gamemaster.hp -= amount;
+        healt.fillAmount = gamemaster.hp / gamemaster.maxhp;
 
     }
     public void TakeLife(float amount)
     {
-        gamemaster.hp = Mathf.Clamp(gamemaster.hp + amount, 0f, gamemaster.maxhp);
-        healt.transform.localScale = new Vector2(gamemaster.hp / gamemaster.maxhp, 1);
+        gamemaster.hp += amount;
+        healt.fillAmount = gamemaster.hp / gamemaster.maxhp;
 
     }
 }

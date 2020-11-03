@@ -9,11 +9,12 @@ public class Player_Behaviour : MonoBehaviour
     private float m_horizontalMove;
     private float m_verticalMove;
     public CharacterController player;
+    private Rigidbody m_rigidbody;
     private Vector3 playerInput;
     private Transform m_transform;
     public float damage;
     public float heal;
-    [SerializeField] private float m_playerspeed = 15;
+    [SerializeField] private float m_playerspeed = 100;
     private Vector3 movePlayer;
     [SerializeField] private bool iamdead = false;
 
@@ -45,6 +46,7 @@ public class Player_Behaviour : MonoBehaviour
     {
 
         player = GetComponent<CharacterController>();
+        m_rigidbody = GetComponent<Rigidbody>();
         m_cameraTransform = mainCamera.transform;
         m_transform = player.transform;
     }
@@ -69,8 +71,12 @@ public class Player_Behaviour : MonoBehaviour
 
         PlayerSkills();
 
+        movePlayer.y = m_rigidbody.velocity.y;
+
+        m_rigidbody.velocity = movePlayer;
+
         //le asigno el movimiento al player
-        player.Move(movePlayer * Time.deltaTime);
+        //player.Move(movePlayer * Time.deltaTime);
 
     }
 
