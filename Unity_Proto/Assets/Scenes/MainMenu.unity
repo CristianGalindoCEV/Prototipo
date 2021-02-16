@@ -215,6 +215,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &170324714
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +402,8 @@ Transform:
 >>>>>>> parent of 3b84723 (Script rotate)
 =======
 >>>>>>> parent of 3b84723 (Script rotate)
+=======
+>>>>>>> parent of 3b84723 (Script rotate)
 --- !u!1 &447142011
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,9 +583,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Children:
   - {fileID: 1037001422}
   - {fileID: 1812780433}
+=======
+  m_Children: []
+>>>>>>> parent of 3b84723 (Script rotate)
 =======
   m_Children: []
 >>>>>>> parent of 3b84723 (Script rotate)
@@ -634,6 +641,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813357303}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &1037001421
@@ -1225,6 +1233,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993663597}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+=======
+>>>>>>> parent of 3b84723 (Script rotate)
 =======
 >>>>>>> parent of 3b84723 (Script rotate)
 =======
